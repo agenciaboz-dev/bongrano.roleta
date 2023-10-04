@@ -10,6 +10,7 @@ import MaskedInput from "../components/MaskedInput"
 import masks from "../assets/masks"
 import * as yup from "yup"
 import { useSnackbar } from "burgos-snackbar"
+import api from "../api"
 
 interface SignupProps {}
 
@@ -28,12 +29,14 @@ export const Signup: React.FC<SignupProps> = ({}) => {
         phone: yup.string().required().length(16),
     })
 
-    const handleSubmit = (values: Form) => {
+    const handleSubmit = async (values: Form) => {
         if (values.phone.length != 16 || values.phone[5] != "9") {
             snackbar({ severity: "error", text: "Número inválido" })
             return
         } else {
             console.log(values)
+            const code = await api.signup(values)
+            console.log(code)
         }
     }
 
