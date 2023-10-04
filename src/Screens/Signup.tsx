@@ -3,16 +3,20 @@ import { Box, IconButton } from "@mui/material"
 import background2Image from "../assets/images/background2.webp"
 import close_button from "../assets/icons/close_button.svg"
 import { useNavigate } from "react-router-dom"
-import { Form, Formik } from "formik"
+import { Form, Formik, FormikHelpers } from "formik"
 import { TextField } from "../components/TextField"
 import { Button } from "../components/Button"
 import MaskedInput from "../components/MaskedInput"
 import masks from "../assets/masks"
+import * as yup from "yup"
+import { useSnackbar } from "burgos-snackbar"
 
 interface SignupProps {}
 
 export const Signup: React.FC<SignupProps> = ({}) => {
     const navigate = useNavigate()
+
+    const { snackbar } = useSnackbar()
 
     const initialValues: Form = {
         name: "",
@@ -20,8 +24,17 @@ export const Signup: React.FC<SignupProps> = ({}) => {
         phone: "",
     }
 
+    const validationSchema = yup.object().shape({
+        phone: yup.string().required().length(16),
+    })
+
     const handleSubmit = (values: Form) => {
-        console.log(values)
+        if (values.phone.length != 16 || values.phone[5] != "9") {
+            snackbar({ severity: "error", text: "Número inválido" })
+            return
+        } else {
+            console.log(values)
+        }
     }
 
     return (
@@ -48,17 +61,18 @@ export const Signup: React.FC<SignupProps> = ({}) => {
             </p>
 
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-                {({ values, handleChange }) => (
+                {({ values, handleChange, errors }) => (
                     <Form>
                         <Box sx={{ flexDirection: "column", gap: "15vw" }}>
-                            <TextField label="Nome" name="name" value={values.name} onChange={handleChange} />
-                            <TextField label="Endereço" name="address" value={values.address} onChange={handleChange} />
+                            <TextField label="Nome" name="name" value={values.name} onChange={handleChange} required />
+                            <TextField label="Endereço" name="address" value={values.address} onChange={handleChange} required />
                             <TextField
                                 label="Whatsapp"
                                 name="phone"
                                 value={values.phone}
                                 onChange={handleChange}
                                 InputProps={{ inputComponent: MaskedInput, inputProps: { mask: masks.phone } }}
+                                required
                             />
 
                             <Button type="submit">Finalizar inscrição</Button>
