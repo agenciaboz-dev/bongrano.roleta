@@ -5,6 +5,8 @@ import logoImage from "../assets/images/logo.webp"
 import { Wheel } from "react-custom-roulette"
 import { Button } from "../components/Button"
 import { useLocation, useNavigate } from "react-router-dom"
+import api from "../api"
+import { WheelData } from "react-custom-roulette/dist/components/Wheel/types"
 
 interface RouletteProps {}
 
@@ -13,16 +15,35 @@ export const Roulette: React.FC<RouletteProps> = ({}) => {
     const user: User = useLocation().state?.user
 
     const [spin, setSpin] = useState(false)
+    const [prize, setPrize] = useState(0)
 
-    const options = {
-        nothing: { option: "Não foi dessa vez", style: { backgroundColor: "orange", textColor: "white" } },
-        mug: { option: "Caneca", style: { backgroundColor: "brown", textColor: "white" } },
-        product: { option: "Produto Bongrano", style: { backgroundColor: "brown", textColor: "white" } },
+    const options: Record<string, WheelData> = {
+        nothing: { option: "Não foi dessa vez" },
+        mug: { option: "Caneca" },
+        product: { option: "Produto Bongrano" },
     }
 
-    const data = [options.nothing, options.mug, options.nothing, options.product, options.nothing, options.mug, options.nothing, options.product]
+    const data: WheelData[] = [
+        options.nothing,
+        options.mug,
+        options.nothing,
+        options.product,
+        options.nothing,
+        options.mug,
+        options.nothing,
+        options.product,
+    ]
+
+    const handleSpinButton = async () => {
+        try {
+            const prize = await api.roulette(user)
+            setPrize(prize)
+            setSpin(true)
+        } catch {}
+    }
 
     useEffect(() => {
+        console.log(user)
         if (!user) {
             navigate("/")
         }
@@ -46,9 +67,9 @@ export const Roulette: React.FC<RouletteProps> = ({}) => {
         >
             <img src={logoImage} alt="logo" style={{ width: "50vw" }} />
 
-            <Wheel mustStartSpinning={spin} prizeNumber={0} data={data} backgroundColors={["#3e3e3e", "#df3428"]} textColors={["#ffffff"]} />
+            <Wheel mustStartSpinning={spin} prizeNumber={prize} data={data} backgroundColors={["orange", "brown"]} textColors={["#ffffff"]} />
 
-            <Button onClick={() => setSpin(true)}>girar</Button>
+            <Button onClick={handleSpinButton}>girar</Button>
         </Box>
     )
 }

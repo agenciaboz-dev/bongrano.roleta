@@ -9,4 +9,9 @@ const signup = async (values: Form) => {
     return response
 }
 
-export default { signup }
+const roulette = async (user: User) => {
+    const response = (await api.post("/roulette", user)).data
+    return response
+}
+
+export default { signup, roulette }
