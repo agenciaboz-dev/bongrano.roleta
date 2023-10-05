@@ -4,11 +4,14 @@ import { Background } from "../components/Background"
 import { TextField } from "../components/TextField"
 import { useLocation } from "react-router-dom"
 import MaskedInput from "../components/MaskedInput"
+import { useSnackbar } from "burgos-snackbar"
 
 interface ValidationProps {}
 
 export const Validation: React.FC<ValidationProps> = ({}) => {
     const validCode: string = useLocation().state?.code
+
+    const { snackbar } = useSnackbar()
 
     const [code, setCode] = useState("")
 
@@ -16,7 +19,7 @@ export const Validation: React.FC<ValidationProps> = ({}) => {
         if (code == validCode) {
             console.log("igual")
         } else {
-            console.log("diferente")
+            snackbar({ severity: "error", text: "Código inválido" })
         }
     }
 
