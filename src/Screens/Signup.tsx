@@ -1,5 +1,5 @@
-import React from "react"
-import { Box, IconButton } from "@mui/material"
+import React, { useState } from "react"
+import { Box, CircularProgress, IconButton } from "@mui/material"
 import background2Image from "../assets/images/background2.webp"
 import close_button from "../assets/icons/close_button.svg"
 import { useNavigate } from "react-router-dom"
@@ -19,6 +19,8 @@ export const Signup: React.FC<SignupProps> = ({}) => {
 
     const { snackbar } = useSnackbar()
 
+    const [loading, setLoading] = useState(false)
+
     const initialValues: Form = {
         name: "",
         address: "",
@@ -34,9 +36,20 @@ export const Signup: React.FC<SignupProps> = ({}) => {
             snackbar({ severity: "error", text: "Número inválido" })
             return
         } else {
-            console.log(values)
-            const code = await api.signup(values)
-            console.log(code)
+            setLoading(true)
+            try {
+                const response = await api.signup(values)
+
+                if (response.error) {
+                    snackbar({ severity: "error", text: response.error })
+                } else if (response.code) {
+                    const code = response.code
+                    navigate("/validation", { state: { code } })
+                }
+            } catch (error) {
+                console.log(error)
+            }
+            setLoading(false)
         }
     }
 
@@ -78,7 +91,7 @@ export const Signup: React.FC<SignupProps> = ({}) => {
                                 required
                             />
 
-                            <Button type="submit">Finalizar inscrição</Button>
+                            <Button type="submit">{loading ? <CircularProgress size={"2rem"} color="secondary" /> : "Finalizar inscrição"}</Button>
                         </Box>
                     </Form>
                 )}

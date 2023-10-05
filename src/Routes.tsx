@@ -3,6 +3,7 @@ import { Route, Routes as ReactRoutes } from "react-router-dom"
 import { BrowserRouter } from "react-router-dom"
 import { Home } from "./Screens/Home"
 import { Signup } from "./Screens/Signup"
+import { Validation } from "./Screens/Validation"
 
 interface RoutesProps {}
 
@@ -12,6 +13,7 @@ export const Routes: React.FC<RoutesProps> = ({}) => {
             <ReactRoutes>
                 <Route index element={<Home />} />
                 <Route path="signup" element={<Signup />} />
+                <Route path="validation" element={<Validation />} />
             </ReactRoutes>
         </BrowserRouter>
     )
