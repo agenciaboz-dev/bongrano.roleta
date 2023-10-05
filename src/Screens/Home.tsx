@@ -42,8 +42,8 @@ export const Home: React.FC<HomeProps> = ({}) => {
                     Tenha a chance de passar mais um dia com a Bongrano!
                 </p>
 
-                <img src={breadsImage} alt="breads1" style={{ width: "100vw", position: "absolute", bottom: "-15vw", zIndex: -2 }} />
-                <img src={breads2Image} alt="breads2" style={{ width: "60vw", position: "absolute", bottom: "-15vw", zIndex: -2 }} />
+                <img src={breadsImage} alt="breads1" style={{ width: "100vw", position: "absolute", bottom: "-15vw", zIndex: 1 }} />
+                <img src={breads2Image} alt="breads2" style={{ width: "60vw", position: "absolute", bottom: "-15vw", zIndex: 1 }} />
             </Background>
             <Box
                 sx={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, zIndex: 10, width: "100vw", height: "100vh", overlowY: "hidden" }}
