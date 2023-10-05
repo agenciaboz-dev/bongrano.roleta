@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Box } from "@mui/material"
+import { Box, CircularProgress } from "@mui/material"
 import background2Image from "../assets/images/background2.webp"
 import logoImage from "../assets/images/logo.webp"
 import { Wheel } from "react-custom-roulette"
@@ -7,6 +7,7 @@ import { Button } from "../components/Button"
 import { useLocation, useNavigate } from "react-router-dom"
 import api from "../api"
 import { WheelData } from "react-custom-roulette/dist/components/Wheel/types"
+import { useSnackbar } from "burgos-snackbar"
 
 interface RouletteProps {}
 
@@ -14,8 +15,11 @@ export const Roulette: React.FC<RouletteProps> = ({}) => {
     const navigate = useNavigate()
     const user: User = useLocation().state?.user
 
+    const { snackbar } = useSnackbar()
+
     const [spin, setSpin] = useState(false)
-    const [prize, setPrize] = useState(0)
+    const [prize, setPrize] = useState<number>()
+    const [loading, setLoading] = useState(false)
 
     const options: Record<string, WheelData> = {
         nothing: { option: "Não foi dessa vez" },
@@ -35,12 +39,32 @@ export const Roulette: React.FC<RouletteProps> = ({}) => {
     ]
 
     const handleSpinButton = async () => {
+        if (loading) return
+
         try {
-            const prize = await api.roulette(user)
-            setPrize(prize)
-            setSpin(true)
+            setLoading(true)
+            const response = await api.roulette(user)
+
+            if (response.error) {
+                snackbar({ severity: "error", text: response.error })
+            } else {
+                setPrize(response.prize)
+            }
         } catch {}
+
+        setLoading(false)
     }
+
+    const handleStop = () => {
+        alert(prize)
+    }
+
+    useEffect(() => {
+        console.log({ prize })
+        if (prize !== undefined) {
+            setSpin(true)
+        }
+    }, [prize])
 
     useEffect(() => {
         console.log(user)
@@ -67,9 +91,16 @@ export const Roulette: React.FC<RouletteProps> = ({}) => {
         >
             <img src={logoImage} alt="logo" style={{ width: "50vw" }} />
 
-            <Wheel mustStartSpinning={spin} prizeNumber={prize} data={data} backgroundColors={["orange", "brown"]} textColors={["#ffffff"]} />
+            <Wheel
+                mustStartSpinning={spin}
+                prizeNumber={prize || 0}
+                data={data}
+                backgroundColors={["orange", "brown"]}
+                textColors={["#ffffff"]}
+                onStopSpinning={handleStop}
+            />
 
-            <Button onClick={handleSpinButton}>girar</Button>
+            <Button onClick={handleSpinButton}>{loading ? <CircularProgress size={"1.68rem"} color="secondary" /> : "Girar roleta"}</Button>
         </Box>
     )
 }
