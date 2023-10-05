@@ -44,7 +44,8 @@ export const Signup: React.FC<SignupProps> = ({}) => {
                     snackbar({ severity: "error", text: response.error })
                 } else if (response.code) {
                     const code = response.code
-                    navigate("/validation", { state: { code } })
+                    const user = response.user
+                    navigate("/validation", { state: { code, user } })
                 }
             } catch (error) {
                 console.log(error)

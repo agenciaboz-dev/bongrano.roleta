@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { Box, IconButton } from "@mui/material"
 import { Background } from "../components/Background"
 import { TextField } from "../components/TextField"
@@ -12,6 +12,9 @@ interface ValidationProps {}
 
 export const Validation: React.FC<ValidationProps> = ({}) => {
     const validCode: string = useLocation().state?.code
+    const user: User = useLocation().state?.user
+    const inputRef = useRef<HTMLInputElement | null>(null)
+
     const navigate = useNavigate()
 
     const { snackbar } = useSnackbar()
@@ -19,8 +22,8 @@ export const Validation: React.FC<ValidationProps> = ({}) => {
     const [code, setCode] = useState("")
 
     const validateCode = (code: string) => {
-        if (code == validCode) {
-            console.log("igual")
+        if (code == validCode.toUpperCase()) {
+            navigate("/roulette", { state: { user } })
         } else {
             snackbar({ severity: "error", text: "Código inválido" })
         }
@@ -35,6 +38,14 @@ export const Validation: React.FC<ValidationProps> = ({}) => {
 
         setCode(value)
     }
+
+    useEffect(() => {
+        if (!user) {
+            navigate("/")
+        } else {
+            inputRef.current?.focus()
+        }
+    }, [])
 
     return (
         <Background>
@@ -52,6 +63,7 @@ export const Validation: React.FC<ValidationProps> = ({}) => {
 
             <Box sx={{ zIndex: 10 }}>
                 <TextField
+                    inputRef={inputRef}
                     label="Código"
                     value={code}
                     onChange={handleChange}
