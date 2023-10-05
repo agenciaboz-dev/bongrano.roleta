@@ -1,15 +1,18 @@
 import React, { useState } from "react"
-import { Box } from "@mui/material"
+import { Box, IconButton } from "@mui/material"
 import { Background } from "../components/Background"
 import { TextField } from "../components/TextField"
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import MaskedInput from "../components/MaskedInput"
 import { useSnackbar } from "burgos-snackbar"
+import CloseIcon from "@mui/icons-material/Close"
+import { colors } from "../style/colors"
 
 interface ValidationProps {}
 
 export const Validation: React.FC<ValidationProps> = ({}) => {
     const validCode: string = useLocation().state?.code
+    const navigate = useNavigate()
 
     const { snackbar } = useSnackbar()
 
@@ -35,6 +38,14 @@ export const Validation: React.FC<ValidationProps> = ({}) => {
 
     return (
         <Background>
+            <IconButton
+                sx={{ position: "absolute", top: "5vw", left: "5vw", zIndex: 5, border: `2px solid ${colors.secondary}` }}
+                onClick={() => navigate("/")}
+                color="secondary"
+            >
+                <CloseIcon />
+            </IconButton>
+
             <p>Agradecemos sua participação!</p>
 
             <p>Está pronto(a) para a 'Roleta Alemã'? Use o código de ativação fornecido no espaço abaixo</p>
