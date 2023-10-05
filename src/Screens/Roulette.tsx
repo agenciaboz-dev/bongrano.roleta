@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Box, CircularProgress } from "@mui/material"
 import background2Image from "../assets/images/background2.webp"
-import logoImage from "../assets/images/logo.webp"
+import logoImage from "../assets/images/title.webp"
 import { Wheel } from "react-custom-roulette"
 import { Button } from "../components/Button"
 import { useLocation, useNavigate } from "react-router-dom"
@@ -84,12 +84,12 @@ export const Roulette: React.FC<RouletteProps> = ({}) => {
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center",
                 padding: "10vw 15vw",
-                gap: "10vw",
+                gap: "5vw",
                 justifyContent: "center",
                 alignItems: "center",
             }}
         >
-            <img src={logoImage} alt="logo" style={{ width: "50vw" }} />
+            <img src={logoImage} alt="logo" style={{ width: "70vw" }} />
 
             <Wheel
                 mustStartSpinning={spin}
