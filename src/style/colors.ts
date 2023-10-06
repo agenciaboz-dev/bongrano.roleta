@@ -11,4 +11,10 @@ export const colors = {
         primary: "#49281F",
         secondary: "#402F11",
     },
+
+    wheel: {
+        radius: "transparent",
+        innerBorder: "#ee7722",
+        outerBorder: "#ee7722"
+    }
 }

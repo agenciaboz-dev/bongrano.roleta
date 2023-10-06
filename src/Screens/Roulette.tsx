@@ -9,6 +9,7 @@ import api from "../api"
 import { WheelData } from "react-custom-roulette/dist/components/Wheel/types"
 import { useSnackbar } from "burgos-snackbar"
 import { Result } from "../components/Result"
+import { colors } from "../style/colors"
 
 interface RouletteProps {}
 
@@ -104,7 +105,12 @@ export const Roulette: React.FC<RouletteProps> = ({}) => {
                 mustStartSpinning={spin}
                 prizeNumber={prize || 0}
                 data={data}
-                backgroundColors={["orange", "brown"]}
+                backgroundColors={[`${colors.primary}`, `${colors.secondary}`]}
+                radiusLineColor={`${colors.wheel.radius}`}
+                innerBorderColor={`${colors.wheel.innerBorder}`}
+                outerBorderColor={`${colors.wheel.outerBorder}`}
+                innerBorderWidth={5}
+                outerBorderWidth={10}
                 textColors={["#ffffff"]}
                 onStopSpinning={handleStop}
             />
