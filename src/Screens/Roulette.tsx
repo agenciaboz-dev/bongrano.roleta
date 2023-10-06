@@ -8,6 +8,7 @@ import { useLocation, useNavigate } from "react-router-dom"
 import api from "../api"
 import { WheelData } from "react-custom-roulette/dist/components/Wheel/types"
 import { useSnackbar } from "burgos-snackbar"
+import { Result } from "../components/Result"
 
 interface RouletteProps {}
 
@@ -20,6 +21,8 @@ export const Roulette: React.FC<RouletteProps> = ({}) => {
     const [spin, setSpin] = useState(false)
     const [prize, setPrize] = useState<number>()
     const [loading, setLoading] = useState(false)
+    const [openResult, setOpenResult] = useState(false)
+    const [disableButton, setDisableButton] = useState(false)
 
     const options: Record<string, WheelData> = {
         nothing: { option: "Não foi dessa vez" },
@@ -55,14 +58,20 @@ export const Roulette: React.FC<RouletteProps> = ({}) => {
         setLoading(false)
     }
 
+    const handleLeave = () => {
+        navigate("/")
+    }
+
     const handleStop = () => {
-        alert(prize)
+        setOpenResult(true)
+        setDisableButton(false)
     }
 
     useEffect(() => {
         console.log({ prize })
         if (prize !== undefined) {
             setSpin(true)
+            setDisableButton(true)
         }
     }, [prize])
 
@@ -100,7 +109,16 @@ export const Roulette: React.FC<RouletteProps> = ({}) => {
                 onStopSpinning={handleStop}
             />
 
-            <Button onClick={handleSpinButton}>{loading ? <CircularProgress size={"1.68rem"} color="secondary" /> : "Girar roleta"}</Button>
+            {openResult ? (
+                <Button onClick={handleLeave} sx={{ zIndex: 1000000 }}>
+                    Sair
+                </Button>
+            ) : (
+                <Button onClick={handleSpinButton} disabled={disableButton}>
+                    {loading ? <CircularProgress size={"1.68rem"} color="secondary" /> : "Girar roleta"}
+                </Button>
+            )}
+            <Result open={openResult} prize={prize ? (prize == 1 ? "Caneca" : "Produtos Bongrano") : ""} />
         </Box>
     )
 }
