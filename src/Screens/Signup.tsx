@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Box, CircularProgress, IconButton } from "@mui/material"
+import { Box, Checkbox, CircularProgress, FormControlLabel, IconButton } from "@mui/material"
 import background2Image from "../assets/images/background2.webp"
 import close_button from "../assets/icons/close_button.svg"
 import { useNavigate } from "react-router-dom"
@@ -11,6 +11,7 @@ import masks from "../assets/masks"
 import * as yup from "yup"
 import { useSnackbar } from "burgos-snackbar"
 import api from "../api"
+import { colors } from "../style/colors"
 
 interface SignupProps {}
 
@@ -20,6 +21,7 @@ export const Signup: React.FC<SignupProps> = ({}) => {
     const { snackbar } = useSnackbar()
 
     const [loading, setLoading] = useState(false)
+    const [curitiba, setCuritiba] = useState(true)
 
     const initialValues: Form = {
         name: "",
@@ -82,7 +84,31 @@ export const Signup: React.FC<SignupProps> = ({}) => {
                     <Form>
                         <Box sx={{ flexDirection: "column", gap: "10vw" }}>
                             <TextField label="Nome" name="name" value={values.name} onChange={handleChange} size="small" required />
-                            <TextField label="Endereço" name="address" value={values.address} onChange={handleChange} size="small" required />
+                            <FormControlLabel
+                                label="Você mora em Curitiba?"
+                                sx={{ marginLeft: 0, color: "white", justifyContent: "space-between", marginRight: 0 }}
+                                labelPlacement="start"
+                                control={
+                                    <Checkbox
+                                        checked={curitiba}
+                                        onChange={(ev, checked) => setCuritiba(checked)}
+                                        edge={false}
+                                        sx={{
+                                            color: "#EBEBEB",
+                                            padding: "1vw",
+                                            borderRadius: "2vw",
+                                        }}
+                                    />
+                                }
+                            />
+                            <TextField
+                                label={curitiba ? "Bairro" : "Cidade"}
+                                name="address"
+                                value={values.address}
+                                onChange={handleChange}
+                                size="small"
+                                required
+                            />
                             <TextField
                                 label="Whatsapp"
                                 name="phone"
@@ -93,11 +119,14 @@ export const Signup: React.FC<SignupProps> = ({}) => {
                                 required
                             />
 
-                            <Button type="submit"
+                            <Button
+                                type="submit"
                                 sx={{
-                                    marginTop: "20vw"
+                                    marginTop: "20vw",
                                 }}
-                            >{loading ? <CircularProgress size={"2rem"} color="secondary" /> : "Finalizar inscrição"}</Button>
+                            >
+                                {loading ? <CircularProgress size={"2rem"} color="secondary" /> : "Finalizar inscrição"}
+                            </Button>
                         </Box>
                     </Form>
                 )}
