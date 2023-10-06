@@ -83,11 +83,19 @@ export const Signup: React.FC<SignupProps> = ({}) => {
                 {({ values, handleChange, errors }) => (
                     <Form>
                         <Box sx={{ flexDirection: "column", gap: "10vw" }}>
-                            <TextField label="Nome" name="name" value={values.name} onChange={handleChange} size="small" required />
+                            <TextField
+                                label="Nome"
+                                name="name"
+                                value={values.name}
+                                onChange={handleChange}
+                                size="small"
+                                required
+                                inputProps={{ style: { textAlign: "center" } }}
+                            />
                             <FormControlLabel
                                 label="Você mora em Curitiba?"
                                 sx={{ marginLeft: 0, color: "white", justifyContent: "space-between", marginRight: 0 }}
-                                labelPlacement="start"
+                                labelPlacement="top"
                                 control={
                                     <Checkbox
                                         checked={curitiba}
@@ -107,6 +115,7 @@ export const Signup: React.FC<SignupProps> = ({}) => {
                                 value={values.address}
                                 onChange={handleChange}
                                 size="small"
+                                inputProps={{ style: { textAlign: "center" } }}
                                 required
                             />
                             <TextField
@@ -114,7 +123,7 @@ export const Signup: React.FC<SignupProps> = ({}) => {
                                 name="phone"
                                 value={values.phone}
                                 onChange={handleChange}
-                                InputProps={{ inputComponent: MaskedInput, inputProps: { mask: masks.phone } }}
+                                InputProps={{ inputComponent: MaskedInput, inputProps: { mask: masks.phone, style: { textAlign: "center" } } }}
                                 size="small"
                                 required
                             />
