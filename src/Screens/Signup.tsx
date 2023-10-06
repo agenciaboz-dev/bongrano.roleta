@@ -66,33 +66,38 @@ export const Signup: React.FC<SignupProps> = ({}) => {
                 backgroundPosition: "center",
                 padding: "10vw 15vw",
                 gap: "10vw",
-                justifyContent: "center",
+                justifyContent: "space-evenly",
             }}
         >
             <IconButton sx={{ position: "absolute", top: "5vw", left: "5vw" }} onClick={() => navigate("/")}>
                 <img src={close_button} alt="voltar" style={{ width: "10vw" }} />
             </IconButton>
 
-            <p style={{ color: "white", fontSize: "8vw", textAlign: "center", fontWeight: "bold" }}>
+            <p style={{ color: "white", fontSize: "6vw", textAlign: "center", fontWeight: "bold" }}>
                 Insira seus dados e concorra a prêmios incríveis!
             </p>
 
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
                 {({ values, handleChange, errors }) => (
                     <Form>
-                        <Box sx={{ flexDirection: "column", gap: "15vw" }}>
-                            <TextField label="Nome" name="name" value={values.name} onChange={handleChange} required />
-                            <TextField label="Endereço" name="address" value={values.address} onChange={handleChange} required />
+                        <Box sx={{ flexDirection: "column", gap: "10vw" }}>
+                            <TextField label="Nome" name="name" value={values.name} onChange={handleChange} size="small" required />
+                            <TextField label="Endereço" name="address" value={values.address} onChange={handleChange} size="small" required />
                             <TextField
                                 label="Whatsapp"
                                 name="phone"
                                 value={values.phone}
                                 onChange={handleChange}
                                 InputProps={{ inputComponent: MaskedInput, inputProps: { mask: masks.phone } }}
+                                size="small"
                                 required
                             />
 
-                            <Button type="submit">{loading ? <CircularProgress size={"2rem"} color="secondary" /> : "Finalizar inscrição"}</Button>
+                            <Button type="submit"
+                                sx={{
+                                    marginTop: "20vw"
+                                }}
+                            >{loading ? <CircularProgress size={"2rem"} color="secondary" /> : "Finalizar inscrição"}</Button>
                         </Box>
                     </Form>
                 )}
