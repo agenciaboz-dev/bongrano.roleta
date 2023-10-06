@@ -20,14 +20,14 @@ export const Background: React.FC<BackgroundProps> = ({ children }) => {
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center",
                 alignItems: "center",
-                paddingTop: "20vw",
-                overflowY: "hidden",
+                paddingTop: "10vw",
+                overflow: "hidden",
             }}
         >
             <img
                 src={confettiImage}
                 alt="confetti"
-                style={{ position: "absolute", width: "100vw", height: "100%", top: "5vw", objectFit: "fill", zIndex: 2 }}
+                style={{ position: "absolute", width: "100vw", height: "100vh", top: "5vw", objectFit: "fill", zIndex: 2 }}
             />
             <img src={logoImage} alt="logo" style={{ width: "50vw" }} />
             {children}

@@ -1,6 +1,5 @@
 import React from "react"
 import { Box } from "@mui/material"
-
 import rouletteImage from "../assets/images/roulette.webp"
 import breadsImage from "../assets/images/breads.webp"
 import breads2Image from "../assets/images/breads2.webp"
@@ -18,37 +17,43 @@ const Text: React.FC<{ text: string }> = ({ text }) => (
     </svg>
 )
 
-
-
 export const Home: React.FC<HomeProps> = ({}) => {
     const navigate = useNavigate()
 
     return (
-        <>
+        <Box
+            sx={{
+                overflow: "hidden"
+            }}
+        >
             <Background>
-                <img src={rouletteImage} alt="roulette" style={{ width: "100vw" }} />
+                <img src={rouletteImage} alt="roulette" style={{ marginBottom: "auto", width: "360px" }} />
 
                 <p
                     style={{
-                        color: "white",
-                        fontSize: "8vw",
-                        textShadow: `2px 2px 0 ${colors.text.secondary}`,
+                        color: `${colors.text.primary}`,
+                        fontSize: "6vw",
+                        fontWeight: "700",
                         textAlign: "center",
+                        marginTop: "-30vw",
+                        marginBottom: "auto",
                         marginLeft: "5vw",
                         marginRight: "5vw",
-                        lineHeight: "12vw",
+                        lineHeight: "8vw",
+                        zIndex: "2",
+                        textShadow: "-1px -1px 0 white, 0 -1px 0 white, 1px -1px 0 white, 1px 0 0 white, 1px 1px 0 white, 0 1px 0 white, -1px 1px 0 white, -1px 0 0 white"
                     }}
                 >
                     Tenha a chance de passar mais um dia com a Bongrano!
                 </p>
 
-                <img src={breadsImage} alt="breads1" style={{ width: "100vw", position: "absolute", bottom: "-15vw", zIndex: 1 }} />
-                <img src={breads2Image} alt="breads2" style={{ width: "60vw", position: "absolute", bottom: "-15vw", zIndex: 1 }} />
+                <img src={breadsImage} alt="breads1" style={{ width: "100vw", position: "absolute", bottom: "-20vw", zIndex: 1 }} />
+                <img src={breads2Image} alt="breads2" style={{ width: "60vw", position: "absolute", bottom: "-25vw", zIndex: 1 }} />
             </Background>
             <Box
-                sx={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, zIndex: 10, width: "100vw", height: "100vh", overlowY: "hidden" }}
+                sx={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, zIndex: 10, width: "100vw", height: "100vh", overflowY: "hidden" }}
                 onClick={() => navigate("/signup")}
             ></Box>
-        </>
+        </Box>
     )
 }
