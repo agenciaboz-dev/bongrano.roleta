@@ -49,26 +49,64 @@ export const Validation: React.FC<ValidationProps> = ({}) => {
 
     return (
         <Background>
-            <IconButton
-                sx={{ position: "absolute", top: "5vw", left: "5vw", zIndex: 5, border: `2px solid ${colors.secondary}` }}
-                onClick={() => navigate("/")}
-                color="secondary"
+            <Box
+                sx={{
+                    flexDirection: "column",
+                    height: "70vh",
+                    justifyContent: "space-between",
+                    padding: "10vw 15vw",
+                }}
             >
-                <CloseIcon />
-            </IconButton>
-
-            <p>Agradecemos sua participação!</p>
-
-            <p>Está pronto(a) para a 'Roleta Alemã'? Use o código de ativação fornecido no espaço abaixo</p>
-
-            <Box sx={{ zIndex: 10 }}>
-                <TextField
-                    inputRef={inputRef}
-                    label="Código"
-                    value={code}
-                    onChange={handleChange}
-                    InputProps={{ inputComponent: MaskedInput, inputProps: { mask: "*****" } }}
-                />
+                <IconButton
+                    sx={{ position: "absolute", top: "5vw", left: "5vw", zIndex: 5, border: `2px solid ${colors.secondary}` }}
+                    onClick={() => navigate("/")}
+                    color="secondary"
+                >
+                    <CloseIcon />
+                </IconButton>
+                <p
+                    style={{
+                        color: `${colors.text.primary}`,
+                        fontSize: "7vw",
+                        fontWeight: "700",
+                        textAlign: "center",
+                        lineHeight: "8vw",
+                        zIndex: "2",
+                    }}
+                >
+                    Agradecemos sua participação!
+                </p>
+                <p
+                    style={{
+                        color: `${colors.text.secondary}`,
+                        fontSize: "6vw",
+                        fontWeight: "700",
+                        textAlign: "center",
+                        lineHeight: "8vw",
+                        zIndex: "2",
+                    }}
+                >
+                    Está pronto(a) para a 'Roleta Alemã'? Use o código de ativação fornecido no espaço abaixo
+                </p>
+                <Box
+                    sx={{
+                        zIndex: 10
+                    }}
+                    >
+                    <TextField
+                        inputRef={inputRef}
+                        label="Código"
+                        value={code}
+                        onChange={handleChange}
+                        color="secondary"
+                        InputProps={{ inputComponent: MaskedInput, inputProps: { mask: "*****" },
+                        sx: {
+                                // border: `2px solid ${colors.secondary}`,
+                                borderRadius: "6vw",
+                            }
+                        }}
+                    />
+                </Box>
             </Box>
         </Background>
     )
