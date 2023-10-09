@@ -128,10 +128,12 @@ export const Roulette: React.FC<RouletteProps> = ({}) => {
                     innerBorderWidth={0}
                     outerBorderWidth={5}
                     textColors={[`${colors.wheel.text1}`, `${colors.wheel.text2}`]}
+                    fontFamily={"MADEMellow"}
+                    fontSize={24}
                     onStopSpinning={handleStop}
                     pointerProps={{
                         style: {
-                            filter: "invert(90%) sepia(84%) saturate(200%) hue-rotate(270deg) brightness(206%) contrast(101%)"
+                            filter: "invert(90%) sepia(84%) saturate(400%) hue-rotate(340deg) brightness(190%) contrast(100%)"
                         }
                     }}
                 />

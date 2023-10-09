@@ -20,7 +20,7 @@ export const Result: React.FC<ResultProps> = ({ open, prize }) => {
             hideBackdrop
             disableEscapeKeyDown
         >
-            <Box sx={{ flexDirection: "column", padding: "5vw 1vw", width: "90vw", textAlign: "center", fontSize: "6vw", fontWeight: "bold" }}>
+            <Box sx={{ flexDirection: "column", padding: "5vw 1vw", width: "90vw", textAlign: "center", fontSize: "7vw" }}>
                 {prize ? (
                     <>
                         <p>Parabéns!</p>

@@ -25,6 +25,7 @@ export const Home: React.FC<HomeProps> = ({}) => {
             sx={{
                 overflow: "hidden"
             }}
+            onClick={() => navigate("/signup")}
         >
             <Background>
                 <img src={rouletteImage} alt="roulette" style={{ marginBottom: "auto", width: "360px" }} />
@@ -32,16 +33,16 @@ export const Home: React.FC<HomeProps> = ({}) => {
                 <p
                     style={{
                         color: `${colors.text.primary}`,
-                        fontSize: "6vw",
+                        fontSize: "8vw",
                         fontWeight: "700",
                         textAlign: "center",
                         marginTop: "-30vw",
                         marginBottom: "auto",
                         marginLeft: "5vw",
                         marginRight: "5vw",
-                        lineHeight: "8vw",
+                        lineHeight: "10vw",
                         zIndex: "2",
-                        textShadow: "-1px -1px 0 white, 0 -1px 0 white, 1px -1px 0 white, 1px 0 0 white, 1px 1px 0 white, 0 1px 0 white, -1px 1px 0 white, -1px 0 0 white"
+                        textShadow: "-2px -2px 0 white, 0 -2px 0 white, 2px -2px 0 white, 2px 0 0 white, 2px 2px 0 white, 0 2px 0 white, -2px 2px 0 white, -2px 0 0 white"
                     }}
                 >
                     Tenha a chance de passar mais um dia com a Bongrano!
@@ -50,10 +51,6 @@ export const Home: React.FC<HomeProps> = ({}) => {
                 <img src={breadsImage} alt="breads1" style={{ width: "100vw", position: "absolute", bottom: "-20vw", zIndex: 1 }} />
                 <img src={breads2Image} alt="breads2" style={{ width: "60vw", position: "absolute", bottom: "-25vw", zIndex: 1 }} />
             </Background>
-            <Box
-                sx={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, zIndex: 10, width: "100vw", height: "100vh", overflowY: "hidden" }}
-                onClick={() => navigate("/signup")}
-            ></Box>
         </Box>
     )
 }
