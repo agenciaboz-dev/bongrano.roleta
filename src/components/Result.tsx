@@ -12,11 +12,15 @@ export const Result: React.FC<ResultProps> = ({ open, prize }) => {
         <Dialog
             open={open}
             sx={{ width: "100vw", height: "100vh", justifyContent: "center", alignItems: "center" }}
-            PaperProps={{ sx: { bgcolor: alpha(colors.primary, 0.7), borderRadius: "5vw" } }}
+            PaperProps={{ sx: {
+                            // bgcolor: alpha(colors.primary, 0.7),
+                            backgroundImage: `linear-gradient(${colors.gradient.primary}, ${colors.gradient.secondary})`,
+                            borderRadius: "5vw"
+                        } }}
             hideBackdrop
             disableEscapeKeyDown
         >
-            <Box sx={{ flexDirection: "column", padding: "5vw", width: "90vw", textAlign: "center" }}>
+            <Box sx={{ flexDirection: "column", padding: "5vw 1vw", width: "90vw", textAlign: "center", fontSize: "6vw", fontWeight: "bold" }}>
                 {prize ? (
                     <>
                         <p>Parabéns!</p>
