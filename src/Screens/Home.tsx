@@ -1,8 +1,10 @@
 import React from "react"
 import { Box } from "@mui/material"
 import rouletteImage from "../assets/images/roulette.webp"
-import breadsImage from "../assets/images/breads.webp"
-import breads2Image from "../assets/images/breads2.webp"
+//import breadsImage from "../assets/images/breads.webp"
+import breadsImage from "../assets/images/breadscut.webp"
+//import breads2Image from "../assets/images/breads2.webp"
+import breads2Image from "../assets/images/breads2cut.webp"
 import { colors } from "../style/colors"
 import { useNavigate } from "react-router-dom"
 import { Background } from "../components/Background"
@@ -45,11 +47,10 @@ export const Home: React.FC<HomeProps> = ({}) => {
                         textShadow: "-2px -2px 0 white, 0 -2px 0 white, 2px -2px 0 white, 2px 0 0 white, 2px 2px 0 white, 0 2px 0 white, -2px 2px 0 white, -2px 0 0 white"
                     }}
                 >
-                    Tenha a chance de passar mais um dia com a Bongrano!
-                </p>
+Toque aqui para descobrir como passar mais um dia com a Bongrano!                </p>
 
-                <img src={breadsImage} alt="breads1" style={{ width: "100vw", position: "absolute", bottom: "-20vw", zIndex: 1 }} />
-                <img src={breads2Image} alt="breads2" style={{ width: "60vw", position: "absolute", bottom: "-25vw", zIndex: 1 }} />
+                <img src={breadsImage} alt="breads1" style={{ width: "100vw", position: "absolute", bottom: "0", zIndex: 1 }} />
+                <img src={breads2Image} alt="breads2" style={{ width: "60vw", position: "absolute", bottom: "-0", zIndex: 1 }} />
             </Background>
         </Box>
     )
