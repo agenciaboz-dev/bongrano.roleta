@@ -8,7 +8,7 @@ export const TextField: React.FC<TextFieldProps> = (props) => {
             {...props}
             InputProps={{ ...props.InputProps, sx: { ...props.InputProps?.sx, bgcolor: "white" } }}
             autoComplete="off"
-            InputLabelProps={{ sx: { bgcolor: "white", borderRadius: "2vw", color: `${colors.text.primary}`, fontWeight: "bold" } }}
+            InputLabelProps={{ sx: { bgcolor: "white", borderRadius: "2vw", color: `${colors.text.primary}`, fontFamily: "MADEMellow", fontWeight: "bold" } }}
         />
     )
 }

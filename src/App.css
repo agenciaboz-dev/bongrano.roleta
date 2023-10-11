@@ -1,7 +1,7 @@
 
 @font-face {
-    font-family: Montserrat;
-    src: url("/fonts/Montserrat-Regular.ttf") ;
+    font-family: MADEMellow;
+    src: url("/src/assets/font/MADEMellowPERSONALUSE-Regular.otf") ;
 }
 
 /* @font-face {
@@ -10,11 +10,11 @@
     font-weight: 200 400;
 } */
 
-@font-face {
+/* @font-face {
     font-family: Montserrat;
     src: url("/fonts/Montserrat-Bold.ttf") ;
     font-weight: bold;
-}
+} */
 
 
 .MuiList-root {
@@ -25,7 +25,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Montserrat;
+    font-family: MADEMellow;
     /* user-select: none; */
 }
 

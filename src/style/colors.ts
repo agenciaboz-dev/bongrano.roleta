@@ -13,8 +13,12 @@ export const colors = {
     },
 
     wheel: {
+        slots1: "#EEAA11",
+        slots2: "#CC6600",
+        text1: "#49281F",
+        text2: "#FFFFAA",
         radius: "transparent",
-        innerBorder: "#ee7722",
-        outerBorder: "#ee7722"
+        innerBorder: "transparent",
+        outerBorder: "#AA2200"
     }
 }

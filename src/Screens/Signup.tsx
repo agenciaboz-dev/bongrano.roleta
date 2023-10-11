@@ -68,21 +68,21 @@ export const Signup: React.FC<SignupProps> = ({}) => {
                 backgroundPosition: "center",
                 padding: "10vw 15vw",
                 gap: "10vw",
-                justifyContent: "space-evenly",
+                justifyContent: "center ",
             }}
         >
             <IconButton sx={{ position: "absolute", top: "5vw", left: "5vw" }} onClick={() => navigate("/")}>
                 <img src={close_button} alt="voltar" style={{ width: "10vw" }} />
             </IconButton>
 
-            <p style={{ color: "white", fontSize: "6vw", textAlign: "center", fontWeight: "bold" }}>
+            <p style={{ color: "white", fontSize: "8vw", textAlign: "center", lineHeight: "10vw" }}>
                 Insira seus dados e concorra a prêmios incríveis!
             </p>
 
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
                 {({ values, handleChange, errors }) => (
                     <Form>
-                        <Box sx={{ flexDirection: "column", gap: "10vw" }}>
+                        <Box sx={{ flexDirection: "column", gap: "8vw" }}>
                             <TextField
                                 label="Nome"
                                 name="name"
@@ -94,7 +94,14 @@ export const Signup: React.FC<SignupProps> = ({}) => {
                             />
                             <FormControlLabel
                                 label="Você mora em Curitiba?"
-                                sx={{ marginLeft: 0, color: "white", justifyContent: "space-between", marginRight: 0 }}
+                                sx={{
+                                    color: "white",
+                                    justifyContent: "space-between",
+                                    alignItems: "center",
+                                    gap: "2vw",
+                                    width: "100%",
+                                    margin: 0
+                                }}
                                 labelPlacement="top"
                                 control={
                                     <Checkbox
@@ -103,8 +110,9 @@ export const Signup: React.FC<SignupProps> = ({}) => {
                                         edge={false}
                                         sx={{
                                             color: "#EBEBEB",
-                                            padding: "1vw",
+                                            padding: 0,
                                             borderRadius: "2vw",
+                                            width: "4vw"
                                         }}
                                     />
                                 }
@@ -131,7 +139,7 @@ export const Signup: React.FC<SignupProps> = ({}) => {
                             <Button
                                 type="submit"
                                 sx={{
-                                    marginTop: "20vw",
+                                    marginTop: "15vw",
                                 }}
                             >
                                 {loading ? <CircularProgress size={"2rem"} color="secondary" /> : "Finalizar inscrição"}

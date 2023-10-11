@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { Box, CircularProgress } from "@mui/material"
 import background2Image from "../assets/images/background2.webp"
 import logoImage from "../assets/images/title.webp"
+import moldura from "../assets/images/roleta.png"
 import { Wheel } from "react-custom-roulette"
 import { Button } from "../components/Button"
 import { useLocation, useNavigate } from "react-router-dom"
@@ -26,9 +27,9 @@ export const Roulette: React.FC<RouletteProps> = ({}) => {
     const [disableButton, setDisableButton] = useState(false)
 
     const options: Record<string, WheelData> = {
-        nothing: { option: "Não foi dessa vez" },
+        nothing: { option: "Não foi dessa vez   " },
         mug: { option: "Caneca" },
-        product: { option: "Produto Bongrano" },
+        product: { option: "Produto Bongrano   " },
     }
 
     const data: WheelData[] = [
@@ -101,19 +102,42 @@ export const Roulette: React.FC<RouletteProps> = ({}) => {
         >
             <img src={logoImage} alt="logo" style={{ width: "70vw" }} />
 
-            <Wheel
-                mustStartSpinning={spin}
-                prizeNumber={prize || 0}
-                data={data}
-                backgroundColors={[`${colors.primary}`, `${colors.secondary}`]}
-                radiusLineColor={`${colors.wheel.radius}`}
-                innerBorderColor={`${colors.wheel.innerBorder}`}
-                outerBorderColor={`${colors.wheel.outerBorder}`}
-                innerBorderWidth={5}
-                outerBorderWidth={10}
-                textColors={["#ffffff"]}
-                onStopSpinning={handleStop}
-            />
+            <Box
+                sx={{
+                    position: "relative",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginBottom: "5vw"
+                }}
+            >
+                <img src={moldura} alt=""
+                    style={{
+                        position: "absolute",
+                        width: "115%",
+                        height: "auto",
+                    }}
+                />
+                <Wheel
+                    mustStartSpinning={spin}
+                    prizeNumber={prize || 0}
+                    data={data}
+                    backgroundColors={[`${colors.wheel.slots1}`, `${colors.wheel.slots2}`]}
+                    radiusLineColor={`${colors.wheel.radius}`}
+                    innerBorderColor={`${colors.wheel.innerBorder}`}
+                    outerBorderColor={`${colors.wheel.outerBorder}`}
+                    innerBorderWidth={0}
+                    outerBorderWidth={5}
+                    textColors={[`${colors.wheel.text1}`, `${colors.wheel.text2}`]}
+                    fontFamily={"MADEMellow"}
+                    fontSize={24}
+                    onStopSpinning={handleStop}
+                    pointerProps={{
+                        style: {
+                            filter: "invert(90%) sepia(84%) saturate(400%) hue-rotate(340deg) brightness(190%) contrast(100%)"
+                        }
+                    }}
+                />
+            </Box>
 
             {openResult ? (
                 <Button onClick={handleLeave} sx={{ zIndex: 1000000 }}>
